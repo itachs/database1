@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アニメ編集 - Anime Tracker</title>
+    <link rel="stylesheet" href="../static/edit.css">
+</head>
+<body>
+    <header>
+        <h1 id="header"><a href="/" >アニメモ</a></h1>
+    </header>
+    <div id="article">
+    <h2>アニメ編集</h2>
+    <form action="/update/{{ anime[0] }}" method="POST">
+        <input type="text" name="title" value="{{ anime[1] }}" required>
+        <input type="text" name="genre" value="{{ anime[6] }}" required>
+        <input type="number" name="episodes_watched" value="{{ anime[2] }}" placeholder="エピソード数">
+        <textarea name="review" placeholder="感想">{{ anime[3] }}</textarea>
+        <input type="number" name="rating" value="{{ anime[4] }}" placeholder="評価 (1-5)" min="1" max="5">
+        <input type="date" name="watched_date" value="{{ anime[5] }}">
+        <button type="submit">更新</button>
+    </form>
+    <a href="/">編集キャンセル</a>
+</div>
+</body>
+</html>

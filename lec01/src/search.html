@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索結果 - Anime Tracker</title>
+    <link rel="stylesheet" href="../static/search.css">
+</head>
+<body>
+    <header>
+        <h1 id="header"><a href="/" >アニメモ</a></h1>
+    </header>
+    <div id="article">
+    <h2>検索結果</h2>
+    {%if animes%}
+    <ul>
+        {% for anime in animes %}
+            <li>
+                <p><strong>{{ anime[1] }}</strong>---{{ anime[2] }}話 評価: {{ anime[4] }}  日付: {{ anime[5] }}
+                </br>{{ anime[3] }} </br></br>
+                <a href="/delete/{{ anime[0] }}" onclick="return confirm('{{ anime[1] }}を削除しますか？');">削除</a>
+                <a href="/edit/{{ anime[0] }}">編集</a> </p> 
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <h2>検索結果はありません</h2>
+    {%endif%}
+    <a href="/" id="home">ホームに戻る</a>
+</div>
+</body>
+</html>

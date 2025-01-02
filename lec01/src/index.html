@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Tracker</title>
+    <link rel="stylesheet" href="../static/index.css">
+</head>
+<body>
+    <header>
+        <h1 id="header"><a href="/" >アニメモ</a></h1>
+    </header>
+    <div id="article">
+        <form action="/search" method="POST">
+            <input type="text" name="search_title" placeholder="タイトルで検索">
+            <button type="submit">検索</button>
+        </form>
+    <h2>追加したいアニメの情報入力</h2>
+    <form action="/add" method="POST">
+        <input type="text" name="title" placeholder="タイトル" required>
+        <input type="text" name="gen" placeholder="ジャンル" required>
+        <input type="number" name="episodes_watched" placeholder="エピソード数" required>
+        <textarea name="review" placeholder="感想"></textarea>
+        <input type="number" name="rating" placeholder="評価 (1-5)" min="1" max="5" required>
+        <input type="date" name="watched_date"  required>
+        <button type="submit">追加</button>
+    </form>
+
+
+    <div id ="memo">
+    <h2>アニメ一覧</h2>
+    {%if genres.items()%}
+    {% else %}
+      <h2>現在入力したアニメはありません</h2>
+    {%endif%}
+    {% for genre, animes in genres.items() %}
+    <details open>
+        <summary>{{ genre }}</summary>
+        <ul>
+            {% for anime in animes %}
+                <li>
+                    <p><strong>{{ anime[1] }}</strong>---{{ anime[2] }}話 評価: {{ anime[4] }}  日付: {{ anime[5] }}
+                    </br>{{ anime[3] }} </br></br>
+                    <a href="/delete/{{ anime[0] }}" onclick="return confirm('{{ anime[1] }}を削除しますか？');">削除</a>
+                    <a href="/edit/{{ anime[0] }}">編集</a> </p> 
+                </li>
+            {% endfor %}
+        </ul>
+    </details>
+    {% endfor %}
+
+</div>
+</div>
+<footer>
+    <p >5422069 板橋輝</br>日本大学文理学部情報科学科 データベース演習課題</p>
+</footer>
+</body>
+</html>

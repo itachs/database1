@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
 main = Flask(__name__, template_folder='src')
-dataB = 'anime_tracker.db'
+dataB = 'animes.db'
 
 def init_db():
     with sqlite3.connect(dataB) as conn:
